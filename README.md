@@ -20,3 +20,18 @@ VSCode 라이브서버 설치 + 크롬
 
 <br />
 
+threejs.org에서 다운로드
+
+build 폴더에 3개의 파일이 있는데, three.js 와 three.min.js(압축버전) 은 html에 src 속성 경로 넣어서 쓸 때,
+
+모듈 방식은 three.module.js
+
+<br />
+
+three.js 로 실습
+
+<br />
+
+---
+
+<br />
