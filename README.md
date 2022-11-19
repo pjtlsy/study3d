@@ -100,3 +100,12 @@ mesh가 near와 far 사이에 있고 시야각(fov) 안에 들어와야 보임
 
 <br />
 
+Perspective Camera <- 사람 눈으로 보듯이(기본적으로)
+
+Orthographic Camera <- 원근 상관없이 크기 같음(ex. 게임 롤.. 자주 쓰이진 않고 특정 목적 있을 때)
+
+<br />
+
+---
+
+<br />
