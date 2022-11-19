@@ -67,3 +67,27 @@ three.js에서 권장하는 방식: 모듈 방식
 ---
 
 <br />
+
+Scene(장면/무대)
+
+Mesh 메쉬 = Geometry 모양 + Material 재질
+
+Camera 카메라 <- Field of view 시야각을 갖는다
+
+Light 빛
+
+화면에 그려주는 것: Renderer 렌더러
+
+<br />
+
+정면 앞 방향 : Z 축 + 방향
+
+좌우: X 축(왼쪽 -, 오른쪽 +)
+
+위 아래: Y축(위 +, 아래 -)
+
+<br />
+
+---
+
+<br />
