@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import dat from "dat.gui";
 
-// ----- 주제: 크기 조정
+// ----- 주제: rotation
 
 export default function example() {
   // Renderer
@@ -57,8 +57,18 @@ export default function example() {
   // 그리기
   const clock = new THREE.Clock();
 
+  // mesh.rotation.y = 0.5;
+  mesh.rotation.reorder("YXZ");
+  mesh.rotation.y = THREE.MathUtils.degToRad(45);
+  mesh.rotation.x = THREE.MathUtils.degToRad(20);
+
   function draw() {
     const delta = clock.getDelta();
+
+    // mesh.rotation.x = THREE.MathUtils.degToRad(45);
+    // mesh.rotation.x = Math.PI / 4;
+    // mesh.rotation.x = 1;
+    // mesh.rotation.z += delta;
 
     // mesh.scale.x = 2;
     // mesh.position.y = 0.5;
