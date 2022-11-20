@@ -82,14 +82,16 @@ export default function example() {
   const clock = new THREE.Clock();
   function draw() {
     // console.log(clock.getElapsedTime());  // 성능 상관없이 절대 시간
-    const time = clock.getElapsedTime();
+    // const time = clock.getElapsedTime();
+    const delta = clock.getDelta();
+
     // 각도는 Radian을 사용
     // 360도는 2파이
     // mesh.rotation.y += 0.1;
     // mesh.rotation.y += THREE.MathUtils.degToRad(1);
-    mesh.rotation.y = 2 * time;
-    // mesh.position.y += 0.01;
-    mesh.position.y = time;
+    mesh.rotation.y += 2 * delta;
+    mesh.position.y += delta;
+    // mesh.position.y = time;
     if (mesh.position.y > 3) {
       mesh.position.y = 0;
     }
