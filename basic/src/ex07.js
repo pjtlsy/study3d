@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-// 주제: 애니메이션
+// 주제: Fog 안개
 
 export default function example() {
   console.log(THREE);
@@ -18,20 +18,21 @@ export default function example() {
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true, // 계단 현상 없이 부드럽게(성능 저하는 좀 있음)
-    alpha: true,
+    // alpha: true,
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   console.log(window.devicePixelRatio);
   renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
   // renderer.setClearAlpha(0.5);
   // renderer.setClearColor(0x00ff00);
-  renderer.setClearColor("#00ff00");
-  renderer.setClearAlpha(0.5);
+  // renderer.setClearColor("#00ff00");
+  // renderer.setClearAlpha(0.5);
 
   // Scene
   const scene = new THREE.Scene();
   // Scene에 직접 칠한 색은 Renderer 덮어씀
-  scene.background = new THREE.Color("blue");
+  // scene.background = new THREE.Color("blue");
+  scene.fog = new THREE.Fog("black", 3, 7);
 
   // Camera
   // const camera = new THREE.PerspectiveCamera(
@@ -54,7 +55,7 @@ export default function example() {
     1000
   );
   // camera.position.x = 1;
-  // camera.position.y = 2;
+  camera.position.y = 1;
   camera.position.z = 5;
   camera.lookAt(0, 0, 0);
   camera.zoom = 0.5; // 줌 아웃 같은거 하려면
@@ -64,7 +65,8 @@ export default function example() {
   // DirectionalLight <- 태양빛같은
   const light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.x = 1;
-  light.position.z = 2;
+  light.position.y = 3;
+  light.position.z = 5;
   scene.add(light);
 
   // Mesh
@@ -75,26 +77,44 @@ export default function example() {
     // color: '#ff0000'
     color: "red",
   });
-  const mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
+  const meshes = [];
+  let mesh;
+  for (let i = 0; i < 10; i++) {
+    mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = Math.random() * 5 - 2.5;
+    mesh.position.z = Math.random() * 5 - 2.5;
+    scene.add(mesh);
+    meshes.push(mesh);
+  }
+  // const mesh = new THREE.Mesh(geometry, material);
+  // scene.add(mesh);
 
   // 그리기
-  const clock = new THREE.Clock();
+  // const clock = new THREE.Clock();
+  let time = Date.now();
+
   function draw() {
     // console.log(clock.getElapsedTime());  // 성능 상관없이 절대 시간
     // const time = clock.getElapsedTime();
-    const delta = clock.getDelta();
+    // const delta = clock.getDelta();
+    const newTime = Date.now();
+    const deltaTime = newTime - time;
+    time = newTime;
+
+    meshes.forEach((item) => {
+      item.rotation.y += deltaTime * 0.001;
+    });
 
     // 각도는 Radian을 사용
     // 360도는 2파이
     // mesh.rotation.y += 0.1;
     // mesh.rotation.y += THREE.MathUtils.degToRad(1);
-    mesh.rotation.y += 2 * delta;
-    mesh.position.y += delta;
+    // mesh.rotation.y += 2 * delta;
+    // mesh.position.y += delta;
     // mesh.position.y = time;
-    if (mesh.position.y > 3) {
-      mesh.position.y = 0;
-    }
+    // if (mesh.position.y > 3) {
+    //   mesh.position.y = 0;
+    // }
     renderer.render(scene, camera);
 
     // window.requestAnimationFrame(draw);

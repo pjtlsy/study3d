@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-// 주제: Light 조명
+// 주제: 애니메이션
 
 export default function example() {
   console.log(THREE);
