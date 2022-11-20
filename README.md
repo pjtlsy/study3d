@@ -124,3 +124,16 @@ import gsap from 'gsap';
 
 <br />
 
+초당 프레임 수(FPS) 체크 - Stats (성능 측정) <- 개발자 도구 끄고 console.log 없애고 테스트
+
+`npm i stats.js`
+
+```javascript
+import Stats from 'stats.js';
+```
+
+<br />
+
+---
+
+<br />
