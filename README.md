@@ -137,3 +137,17 @@ import Stats from 'stats.js';
 ---
 
 <br />
+
+GUI 컨트롤
+
+`npm i dat.gui`
+
+```javascript
+import dat from 'dat.gui';
+```
+
+<br />
+
+---
+
+<br />
