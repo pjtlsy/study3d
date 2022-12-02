@@ -70,19 +70,22 @@ export default function example() {
 
     // boxMesh.position.y = Math.sin(time) * 2;
     // torusMesh.position.y = Math.cos(time) * 2;
-    boxMesh.material.color.set('plum');
-    torusMesh.material.color.set('lime');
+    // boxMesh.material.color.set('plum');
+    // torusMesh.material.color.set('lime');
 
     renderer.render(scene, camera);
     renderer.setAnimationLoop(draw);
   }
 
   function checkIntersects() {
+    if (mouseMoved) return;
+
     raycaster.setFromCamera(mouse, camera);
 
     const intersects = raycaster.intersectObjects(meshes);
     for (const item of intersects) {
       console.log(item.object.name);
+      item.object.material.color.set('red');
       break;
     }
     // if (intersects[0]) {
@@ -105,6 +108,30 @@ export default function example() {
     mouse.y = -((e.clientY / canvas.clientHeight) * 2 - 1);
     // console.log(mouse);
     checkIntersects();
+  });
+
+  let mouseMoved; // 마우스 드래그 했는지 true / false
+  let clickStartX;
+  let clickStartY;
+  let clickStartTime;
+  canvas.addEventListener('mousedown', (e) => {
+    clickStartX = e.clientX;
+    clickStartY = e.clientY;
+    clickStartTime = Date.now();
+    console.log(clickStartTime);
+  });
+
+  canvas.addEventListener('mouseup', (e) => {
+    const xGap = Math.abs(e.clientX - clickStartX);
+    const yGap = Math.abs(e.clientY - clickStartY);
+    console.log(xGap, yGap);
+    const timeGap = Date.now() - clickStartTime;
+
+    if (xGap > 5 || yGap > 5 || timeGap > 500) {
+      mouseMoved = true;
+    } else {
+      mouseMoved = false;
+    }
   });
 
   draw();
