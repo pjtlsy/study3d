@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { Vector2 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { PreventDragClick } from './PreventDragClick';
 
 // ----- 주제: 클릭한 Mesh 선택하기
 
@@ -78,7 +79,7 @@ export default function example() {
   }
 
   function checkIntersects() {
-    if (mouseMoved) return;
+    if (preventDragClick.mouseMoved) return;
 
     raycaster.setFromCamera(mouse, camera);
 
@@ -110,29 +111,7 @@ export default function example() {
     checkIntersects();
   });
 
-  let mouseMoved; // 마우스 드래그 했는지 true / false
-  let clickStartX;
-  let clickStartY;
-  let clickStartTime;
-  canvas.addEventListener('mousedown', (e) => {
-    clickStartX = e.clientX;
-    clickStartY = e.clientY;
-    clickStartTime = Date.now();
-    console.log(clickStartTime);
-  });
-
-  canvas.addEventListener('mouseup', (e) => {
-    const xGap = Math.abs(e.clientX - clickStartX);
-    const yGap = Math.abs(e.clientY - clickStartY);
-    console.log(xGap, yGap);
-    const timeGap = Date.now() - clickStartTime;
-
-    if (xGap > 5 || yGap > 5 || timeGap > 500) {
-      mouseMoved = true;
-    } else {
-      mouseMoved = false;
-    }
-  });
+  const preventDragClick = new PreventDragClick(canvas);
 
   draw();
 }
