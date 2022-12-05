@@ -177,3 +177,15 @@ https://matheowis.github.io/HDRI-to-CubeMap/
 ---
 
 <br />
+
+glTF(GL Transmission Format) <- 3차원 장면과 모델을 표현하는 파일 포맷으로 JSON 표준에 기반하고 있다
+
+<br />
+
+glTF를 바이너리 데이터 자체로 가지고 있는 포맷: glb <- 블렌더로 만들 파일
+
+<br />
+
+---
+
+<br />
