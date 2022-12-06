@@ -44,7 +44,7 @@ export default function example() {
   const gltfLoader = new GLTFLoader();
   let mixer;
 
-  gltfLoader.load('/models/seolyu.glb', (gltf) => {
+  gltfLoader.load('/models/pikachu.glb', (gltf) => {
     // console.log(gltf.scene.children[0]);
     const seolyuMesh = gltf.scene.children[0];
     scene.add(seolyuMesh);
